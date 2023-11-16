@@ -4,8 +4,7 @@ import Navigation from "./Navigation";
 import { AiOutlineSearch } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
 import {FaBars} from 'react-icons/fa'
-import { loadComponents } from "next/dist/server/load-components";
-import path from "path";
+
 
 type Props = {
   activeItem: number;
@@ -25,10 +24,17 @@ const Header = ({ activeItem }: Props) => {
     });
   }
 
+  const handleClose =(e:React.MouseEvent) =>{
+    const target =e.target as HTMLElement;
+    if(target.id  === 'screen'){
+        setOpen(!open);
+    }
+  }
+
   return (
     <div
       className={`w-full p-5 border-b min-h-[60px] border-b-[#ffffff32] transition-opacity ${
-        active && "fixed top-0 left-0 bg-[#00000] z-[9999]"
+        active && "fixed top-0 left-0 bg-[#000] z-[9999]"
       }`}
     >
       <div className="hidden md:w-[90%] mx-auto md:flex items-center justify-between ">
@@ -71,8 +77,14 @@ const Header = ({ activeItem }: Props) => {
                 onClick={handleClose}
                 id="screen"
                 >
-
+                 <div className="fixed bg-black h-screen top-0 right-0 w-[60%] z-[9999]" >
+                   <div className="mt-20 p-5"> 
+                    <Navigation activeItem={activeItem} />
+                    {/* todo */}
+                   </div>
                 </div>
+                </div>
+                
             )
            }
        </div>
