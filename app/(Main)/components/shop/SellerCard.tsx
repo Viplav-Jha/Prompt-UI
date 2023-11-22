@@ -11,7 +11,7 @@ function SellerCard({}: Props) {
     <Avatar src='https://pixner.net/aikeu/assets/images/blog-details/a-one.png'
      className="w-[80px] h-[80px]" />
      <span className={`${styles.label} py-2 text-xl`}>
-         @Viplav Jha
+         @Angle
      </span>
      <div className='flex items-center'>
         <span className={`${styles.label} pr-2`}>
