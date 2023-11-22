@@ -2,11 +2,15 @@ import type { Metadata } from "next";
 import { Inter, Montserrat } from "next/font/google";
 import "./globals.css";
 import Provider from "./(Providers)/NextUiProvider";
-import { ClerkProvider } from '@clerk/nextjs'
+import { ClerkProvider } from "@clerk/nextjs";
+import { Toaster } from "react-hot-toast";
 
-const inter = Inter({ subsets: ["latin"],variable:'--font-inter' });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
-const monserrat =Montserrat({subsets:['latin'],variable:'--font-montserrat'});
+const monserrat = Montserrat({
+  subsets: ["latin"],
+  variable: "--font-montserrat",
+});
 
 export const metadata: Metadata = {
   title: "AI Prompts Marketplace",
@@ -20,11 +24,12 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider>
-    <html lang="en">
-      <body className={`${inter.variable} ${monserrat.variable}`}>
-        <Provider>{children}</Provider>
-      </body>
-    </html>
+      <html lang="en">
+        <body className={`${inter.variable} ${monserrat.variable}`}>
+          <Toaster position="top-center" reverseOrder={false} />
+          <Provider>{children}</Provider>
+        </body>
+      </html>
     </ClerkProvider>
   );
 }
