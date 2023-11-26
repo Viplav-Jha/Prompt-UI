@@ -21,7 +21,7 @@ function SellerCard({}: Props) {
      </div>
      <span className={`${styles.label} py-2`}>
           Total Sales:212
-     </span>
+     </span>                 
     </Card>
   )
 }
