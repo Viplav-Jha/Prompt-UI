@@ -14,15 +14,19 @@ import { Divider } from "@nextui-org/react";
 import Footer from "./components/Layout/Footer";
 import axios from 'axios';
 import Loader from "../utils/Loader";
+import { User } from "@clerk/nextjs/server";
+
 
 type Props = {
   activeItem: number;
+ 
 };
 
 const Page = (props: Props) => {
   const [isMounted, setIsMounted] = useState(false);
   const [loading,setLoading] =useState(false)
   const [user,setUser] =useState(null);
+  const [isSellerExist,setIsSellerExist] = useState(false);
 
   useEffect(() => {
     if (!isMounted) {
@@ -30,19 +34,7 @@ const Page = (props: Props) => {
     }
   }, [isMounted]);
 
-  useEffect(() => {
-    setLoading(true)
-    axios.get('/api/me')
-      .then((res) => {
-      //  console.log(res.data);
-        setUser(res.data.user); // Update the state with the user data
-        setLoading(false)
-      })
-      .catch((error) => {
-       // console.log(error);
-       setLoading(false)
-      });
-  }, []);
+  
 
   if (!isMounted) {
     return null;
@@ -59,7 +51,7 @@ const Page = (props: Props) => {
     ):(
       <div>
       <div className="banner">
-        <Header activeItem={0} user={null} />
+        <Header activeItem={0} user={null} isSellerExist={isSellerExist}/>
         <Hero />
       </div>
       <Image
