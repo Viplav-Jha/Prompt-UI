@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navigation from "./Navigation";
 import { AiOutlineSearch } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
@@ -12,13 +12,14 @@ import DropDown from "./DropDown";
 type Props = {
   activeItem: number;
   user:User | null;
+  isSellerExist:boolean
 };
 
-const Header = ({ user,activeItem }: Props) => {
+const Header = ({ user,activeItem, isSellerExist}: Props) => {
   const [active, setactive] = useState(false);
   const [open, setOpen] = useState(false);
   const [activeProfile,setActiveProfile] =useState(false);
-  const [isSellerExist,setIsSellerExist] = useState(false);
+ 
 
   if (typeof window !== "undefined") {
     window.addEventListener("scroll", () => {
@@ -36,6 +37,9 @@ const Header = ({ user,activeItem }: Props) => {
       setOpen(!open);
     }
   };
+  
+ 
+
    const handleProfile = () =>{
     setActiveProfile(!activeProfile)
    }

@@ -34,7 +34,20 @@ const Page = (props: Props) => {
     }
   }, [isMounted]);
 
-  
+  useEffect(() => {
+    setLoading(true)
+    axios.get('/api/me')
+      .then((res) => {
+       console.log(res.data);
+        setUser(res.data.user); // Update the state with the user data
+        setIsSellerExist(res.data.shop ? true :false)
+        setLoading(false)
+      })
+      .catch((error) => {
+       // console.log(error);
+       setLoading(false)
+      });
+  }, []);
 
   if (!isMounted) {
     return null;
